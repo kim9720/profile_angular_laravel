@@ -1,0 +1,153 @@
+.contact {
+  background-color: #fafafa;
+}
+
+.section-subtitle {
+  margin-top: 16px;
+  font-size: 18px;
+  color: #666666;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 72px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-form {
+  background-color: #ffffff;
+  padding: 48px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #000000;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    }
+
+    &::placeholder {
+      color: #999999;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+.submit-message {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+
+  &.success {
+    background-color: #f0f9f4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+  }
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-card {
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  svg {
+    margin-bottom: 16px;
+  }
+
+  h4 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #000000;
+  }
+
+  p {
+    font-size: 14px;
+    color: #666666;
+  }
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  a {
+    font-size: 14px;
+    color: #666666;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #000000;
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    padding: 32px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 24px;
+  }
+}

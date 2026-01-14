@@ -1,0 +1,22 @@
+<header class="header" [class.scrolled]="isScrolled">
+  <div class="container">
+    <div class="header-content">
+      <a href="#home" class="logo">{{ profileData.name }}</a>
+
+      <nav class="nav" [class.active]="menuOpen">
+        <a routerLink="/home" class="nav-link" (click)="closeMenu()">Home</a>
+        <a href="#about" class="nav-link" (click)="closeMenu()">About</a>
+        <a href="#skills" class="nav-link" (click)="closeMenu()">Skills</a>
+        <a href="#projects" class="nav-link" (click)="closeMenu()">Projects</a>
+        <a href="#experience" class="nav-link" (click)="closeMenu()">Experience</a>
+        <a href="#contact" class="nav-link btn-contact" (click)="closeMenu()">Contact</a>
+      </nav>
+
+      <button class="menu-toggle" (click)="toggleMenu()" [class.active]="menuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
