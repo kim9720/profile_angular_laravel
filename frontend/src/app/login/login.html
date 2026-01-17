@@ -5,6 +5,12 @@
       <p class="subtitle">Sign in to your account to continue</p>
     </div>
 
+    <!-- Global error message for login failures (e.g., invalid credentials) -->
+    <div *ngIf="errorMessage" class="error-alert">
+      <span class="error-icon"></span>
+      {{ errorMessage }}
+    </div>
+
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <div class="form-group">
         <label for="email">Email address</label>

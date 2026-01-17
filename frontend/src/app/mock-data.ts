@@ -4,9 +4,9 @@ export const mockData = {
     title: 'Full Stack Software Engineer',
     tagline: 'Passionate about building scalable solutions with clean, maintainable code.',
     bio: 'Passionate full-stack software engineer with 5+ years of experience building scalable, high-performance applications, focused on clean architecture, efficient problem-solving, and great user experience.',
-    email: 'john.dev@example.com',
-    github: 'https://github.com/johndev',
-    linkedin: 'https://linkedin.com/in/johndev',
+    email: 'mohamed.hababuu@habari.co.tz',
+    github: 'https://github.com/kim9720',
+    linkedin: 'https://www.linkedin.com/in/mohamed-hababuu-49b79120a/',
     twitter: 'https://twitter.com/johndev',
     location: 'Sanawari, Arusha, TZ'
   },

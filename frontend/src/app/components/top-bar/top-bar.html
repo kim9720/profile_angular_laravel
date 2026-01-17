@@ -1,0 +1,114 @@
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="breadcrumb">
+      <span class="breadcrumb-icon">📂</span>
+      <span class="breadcrumb-path">~/dashboard</span>
+    </div>
+  </div>
+
+  <div class="topbar-center">
+    <div class="search-container">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search projects, experiences..."
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="onSearch()"
+      />
+      <kbd class="search-kbd">Ctrl+K</kbd>
+    </div>
+  </div>
+
+  <div class="topbar-right">
+    <div class="time-display">
+      <span class="time">{{ currentTime }}</span>
+      <span class="date">{{ currentDate }}</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Notifications -->
+    <div class="notification-wrapper">
+      <button class="icon-btn" (click)="toggleNotifications()">
+        <span class="icon">🔔</span>
+        <span class="badge" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
+      </button>
+
+      <div class="dropdown notification-dropdown" *ngIf="showNotifications">
+        <div class="dropdown-header">
+          <h4>Notifications</h4>
+          <button class="mark-all-btn" (click)="markAllAsRead()">Mark all read</button>
+        </div>
+        <div class="dropdown-content">
+          <div
+            *ngFor="let notification of notifications"
+            class="notification-item"
+            [class.unread]="!notification.read"
+            [class.success]="notification.type === 'success'"
+            [class.warning]="notification.type === 'warning'"
+            [class.info]="notification.type === 'info'"
+            (click)="markAsRead(notification.id)"
+          >
+            <div class="notification-indicator"></div>
+            <div class="notification-content">
+              <div class="notification-title">{{ notification.title }}</div>
+              <div class="notification-message">{{ notification.message }}</div>
+              <div class="notification-time">{{ notification.time }}</div>
+            </div>
+          </div>
+          <div class="no-notifications" *ngIf="notifications.length === 0">
+            <span>No notifications</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- User Menu -->
+    <div class="user-wrapper">
+      <button class="user-btn" (click)="toggleUserMenu()" *ngIf="user">
+        <div class="user-avatar">
+          {{ user.name.charAt(0).toUpperCase() }}
+        </div>
+        <div class="user-info">
+          <div class="user-name">{{ user.name }}</div>
+          <div class="user-status">● online</div>
+        </div>
+        <span class="chevron">{{ showUserMenu ? '▲' : '▼' }}</span>
+      </button>
+
+      <div class="dropdown user-dropdown" *ngIf="showUserMenu">
+        <div class="dropdown-user-info">
+          <div class="dropdown-avatar">
+            <!-- {{ user?.name.charAt(0).toUpperCase() }} -->
+          </div>
+          <div class="dropdown-user-details">
+            <div class="dropdown-user-name">{{ user?.name }}</div>
+            <div class="dropdown-user-email">{{ user?.email }}</div>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-content">
+          <button class="dropdown-item" (click)="navigateToProfile()">
+            <span class="item-icon">👤</span>
+            <span>Profile</span>
+          </button>
+          <button class="dropdown-item" (click)="navigateToSettings()">
+            <span class="item-icon">⚙️</span>
+            <span>Settings</span>
+          </button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item logout" (click)="logout()">
+            <span class="item-icon">🚪</span>
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Backdrop for closing dropdowns -->
+<div class="backdrop" *ngIf="showNotifications || showUserMenu" (click)="closeDropdowns()"></div>
