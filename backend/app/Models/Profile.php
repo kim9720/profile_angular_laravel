@@ -18,4 +18,18 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+    public function technologies()
+    {
+        return $this->hasMany(Technology::class);
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -25,13 +25,17 @@ interface Notification {
   templateUrl: './top-bar.html',
   styleUrls: ['./top-bar.scss'],
 })
-export class TopBar implements OnInit {
+export class TopBar implements OnInit, OnDestroy {
   user: User | null = null;
-  currentTime: string = '';
-  currentDate: string = '';
+
+  currentTime = '';
+  currentDate = '';
+
   showNotifications = false;
   showUserMenu = false;
   searchQuery = '';
+
+  private timer: any;
 
   notifications: Notification[] = [
     {
@@ -60,16 +64,23 @@ export class TopBar implements OnInit {
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.loadUser();
     this.updateTime();
-    setInterval(() => this.updateTime(), 1000);
+
+    this.timer = setInterval(() => {
+      this.updateTime();
+      this.cdr.detectChanges();
+    }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timer);
   }
 
   loadUser(): void {
-    // Replace with actual AuthService call
     this.user = {
       id: 1,
       name: 'John Doe',
@@ -79,12 +90,14 @@ export class TopBar implements OnInit {
 
   updateTime(): void {
     const now = new Date();
+
     this.currentTime = now.toLocaleTimeString('en-US', {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
       hour12: false,
     });
+
     this.currentDate = now.toLocaleDateString('en-US', {
       weekday: 'short',
       year: 'numeric',
@@ -121,7 +134,6 @@ export class TopBar implements OnInit {
   onSearch(): void {
     if (this.searchQuery.trim()) {
       console.log('Searching for:', this.searchQuery);
-      // Implement search logic here
     }
   }
 
@@ -137,7 +149,10 @@ export class TopBar implements OnInit {
 
   logout(): void {
     this.showUserMenu = false;
-    // Implement actual logout with AuthService
+
+    localStorage.removeItem('authToken');
+    sessionStorage.removeItem('authToken');
+
     this.router.navigate(['/login']);
   }
 

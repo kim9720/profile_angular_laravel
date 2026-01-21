@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { mockData } from '../../mock-data';
+import { ProfileService, Experience } from '../../services/profile'; // Adjust path to your ProfileService
 
 @Component({
   selector: 'app-experience',
@@ -9,7 +9,19 @@ import { mockData } from '../../mock-data';
   styleUrls: ['./experience.scss']
 })
 export class ExperienceComponent implements OnInit {
-  experienceData = mockData.experience;
+  experienceData: Experience[] | null = null;
 
-  ngOnInit() {}
+  constructor(private profileService: ProfileService) {}
+
+  ngOnInit() {
+    this.profileService.getProfileData().subscribe({
+      next: (data) => {
+        this.experienceData = data.experience;
+      },
+      error: (error) => {
+        console.error('Error loading experience data:', error);
+        // Optionally fallback to mockData if needed
+      }
+    });
+  }
 }

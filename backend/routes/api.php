@@ -14,6 +14,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
+Route::get('profile_data', [ProfileController::class, 'getProfileData']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('get_user', [AuthController::class, 'getAthenticatedUser']);

@@ -28,7 +28,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #00ff88, transparent);
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
     animation: shimmer 3s infinite;
   }
 
@@ -44,7 +44,7 @@
       margin-bottom: 16px;
 
       .prompt {
-        color: #00ff88;
+        color: #ffffff;
         margin-right: 8px;
       }
     }
